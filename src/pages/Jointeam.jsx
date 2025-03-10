@@ -138,7 +138,7 @@ const Jointeam = () => {
                     </p>
                 </div>
                 <div className="md:w-1/2 lg:w-1/3 flex items-center justify-center">
-                    <img src="../images/aquani.png" alt="" className="w-full h-50 object-cover" />
+                    <img src="../aquani.png" alt="" className="w-full h-50 object-cover" />
                 </div>
 
             </section>
