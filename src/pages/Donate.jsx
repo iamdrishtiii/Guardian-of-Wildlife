@@ -41,7 +41,7 @@ const Donate = () => {
             <p>Help Defenders of Wildlife save endangered species and the habitat they need to survive with a tax-deductible donation!</p>
           </div>
           {/* Image */}
-          <img className="md:w-1/2 rounded-lg" src="../../public/images/wild.png" alt="Wild Pup" />
+          <img className="md:w-1/2 rounded-lg" src="../images/wild.png" alt="Wild Pup" />
         </div>
 
         {/* Donation Form */}

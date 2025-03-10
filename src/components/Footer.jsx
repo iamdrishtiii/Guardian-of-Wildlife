@@ -74,7 +74,7 @@ const Footer = () => {
 
                  {/* Section 1 */}
                 <div className='md:w-6/12 md:pr-10 py-4'>
-                    <div className='md:flex md:flex-row gap-4'> <img src="../../public/logo.jpeg" alt="" width="50px" height="50px" />
+                    <div className='md:flex md:flex-row gap-4'> <img src="../logo.jpeg" alt="" width="50px" height="50px" />
                         <h2 className='text-xl md:text-2xl lg:text-3xl border-b-2 border-black my-2 w-fit'>How Funds Are Used </h2></div>
                     <div className='flex flex-row'>
 

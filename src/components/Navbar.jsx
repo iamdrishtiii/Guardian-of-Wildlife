@@ -46,7 +46,7 @@ function Navbar() {
 
       {/* Brand Name */}
       <div className="flex flex-wrap text-lg lg:text-2xl gap-4 font-bold md:pr-4">
-        <img src="../../public/logo.jpeg" alt="" width="50px" height="50px" />
+        <img src="../logo.jpeg" alt="" width="50px" height="50px" />
         Guardians of Wildlife
       </div>
 
