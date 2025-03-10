@@ -11,12 +11,18 @@ Our goal is to protect endangered species, preserve natural habitats, and educat
 # Features
 
 ~ Information on endangered species and conservation efforts
+
 ~ Interactive maps showing wildlife habitats
+
 ~ Blog with news and updates on conservation projects
+
 ~ Donation and volunteer opportunities
+
 ~ Community forum for wildlife enthusiasts
+
 
 # Technologies Used
 
 ~ Frontend: HTML, CSS, JavaScript (React), React-redux, Vite
+
 ~API - Blog, Program , Wildlife
