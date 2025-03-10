@@ -47,7 +47,7 @@ function Navbar() {
       {/* Brand Name */}
       <div className="flex flex-wrap text-lg lg:text-2xl gap-4 font-bold md:pr-4">
         <img src="../logo.jpeg" alt="" width="50px" height="50px" />
-        Guardians of Wildlife
+       <Link to="/dashboard"> Guardians of Wildlife</Link>
       </div>
 
       {/* Mobile Menu - Display when 'navOpen' is true */}
