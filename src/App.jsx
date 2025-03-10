@@ -9,7 +9,7 @@ import Program from './pages/Program';
 import Blog from './pages/Blog';
 import Footer from './components/Footer';
 import Donate from './pages/Donate';
-import DetailPage from './pages/Detailpage';
+import DetailPage from './pages/DetailPage';
 
 const App = () => {
   return (
