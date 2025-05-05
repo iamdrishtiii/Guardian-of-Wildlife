@@ -2,7 +2,7 @@ import * as actions from './actiontypes'
 export const initState = {
     animalss: [],
     programs: [],
-    blogs: []
+    blogs: [],
 }
 const reducer = (state = initState, action) => {
     switch (action.type) {
@@ -12,6 +12,7 @@ const reducer = (state = initState, action) => {
             return { ...state, programs: action.payload }
         case actions.GET_BLOG:
             return { ...state, blogs: action.payload }
+        
         default:
             return state
     }

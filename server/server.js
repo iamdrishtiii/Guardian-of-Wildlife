@@ -1,11 +1,29 @@
 const express = require('express')
-const app = express()
-const port = 3000
+const app = express();
+const dbConnection = require("./config/config")
+const wildliferoute = require("./routes/wildliferoute")
+const dotenv=require("dotenv");
+const programsroute = require('./routes/programsroute');
+const blogroute=require('./routes/blogroute');
+const cors = require('cors');
+const contactroute = require('./routes/contactroute');
+const subsroute = require('./routes/footerroute');
+const joinusroute = require('./routes/joinusroute');
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+dotenv.config();
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+app.use(express.json());
+app.use(cors());
+app.use(wildliferoute);
+app.use(programsroute);
+app.use(blogroute);
+app.use(contactroute)
+app.use(joinusroute);
+app.use(subsroute);
+
+// connect to db
+dbConnection(); 
+
+app.listen(process.env.PORT  , () => {
+  console.log(`Server listening on port ${process.env.PORT}`)
 })

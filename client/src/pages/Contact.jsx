@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, {  useState } from 'react';
 import { Modal, Box, Typography, Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
 import { emailRegex } from '../assets/regex';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { Contactapi } from '../assets/api';
+import axios from "axios"
 
 const Contact = () => {
     const style = {
@@ -15,10 +17,11 @@ const Contact = () => {
         boxShadow: 24,
         p: 1,
     };
-
+                                                                                    
     const [firstname, setFirstName] = useState("");
     const [lastname, setlastName] = useState("")
-    const [email, setEmail] = useState("");
+    const [emaill, setEmail] = useState("");
+    const [textarea, setTextarea] = useState("");
 
     const [openModal, setOpenModal] = useState(false);
 
@@ -26,6 +29,7 @@ const Contact = () => {
         firstnameError: "",
         lastnameError: "",
         emailError: "",
+        textError: ""
 
     })
     const [formValid, setFormValid] = useState(false)
@@ -60,11 +64,11 @@ const Contact = () => {
         return isValid;
     }
 
-    const validateEmail = (email) => {
+    const validateEmail = (emaill) => {
         let eError = error.emailError;
         let isValid = formValid;
 
-        if (!emailRegex.test(email)) {
+        if (!emailRegex.test(emaill)) {
             eError = "This is invalid";
             isValid = false;
         } else {
@@ -72,12 +76,32 @@ const Contact = () => {
             eError = "";
         }
 
-        setEmail(email);
+        setEmail(emaill);
         setFormValid(isValid);
         setError({ ...error, emailError: eError });
 
         return isValid;
     };
+
+    const validatetext = (textarea) => {
+        let tError = error.textError;
+        let isValid = formValid;
+
+        if (textarea.trim() === "") {
+            tError = "This is required";
+            isValid = false;
+        } else if (textarea.trim().length < 10) {
+            tError = "Enter something!";
+            isValid = false
+        } else {
+            isValid = true;
+            tError = ""
+        }
+        setTextarea(textarea)
+        setFormValid(isValid);
+        setError({ ...error, textError: tError })
+        return isValid;
+    }
 
     const handleChange = (e) => {
 
@@ -85,25 +109,44 @@ const Contact = () => {
             validateFirstname(e.target.value)
         } else if (e.target.id === "lastname") {
             validateLastname(e.target.value)
-        } else if (e.target.id === "email") {
+        } else if (e.target.id === "emaill") {
             validateEmail(e.target.value)
+        } else if (e.target.id === "textarea") {
+            validatetext(e.target.value)
         }
     }
 
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit =async (e) => {
         e.preventDefault();
-        if (validateFirstname(firstname) && validateLastname(lastname) && validateEmail(email)
-        ) {
+        if (validateFirstname(firstname) && validateLastname(lastname) && validateEmail(emaill) && validatetext(textarea)
+        ) { 
+    // console.log(firstname,lastname,emaill,textarea)
+            const contactinfo = {
+                firstname: firstname,
+                lastname: lastname,
+                emaill: emaill,
+                textarea: textarea,
+            }
+            await axios.post(Contactapi,contactinfo)
+            .then((res)=>{
+                if(res){
+                    console.log("Contact you soon")
+                }
+            }).catch((error)=>{
+                console.log(error)
+            })
 
             setFirstName("")
             setlastName("")
             setEmail("")
+            setTextarea("")
             setOpenModal(true);
             setTimeout(() => setOpenModal(false), 2000);
 
         }
+
     }
 
     return (
@@ -170,14 +213,24 @@ const Contact = () => {
                         </div>
                         <input
                             type="email"
-                            id="email"
-                            name="email"
+                            id="emaill"
+                            name="emaill"
                             onChange={handleChange}
-                            value={email}
+                            value={emaill}
                             placeholder="Email*"
                             className="border p-2 w-full" />
                         <p style={{ color: "red" }}>{error.emailError}</p>
-                        <textarea placeholder="What can we help you with?" className="border p-2 w-full" rows="4" required></textarea>
+                        <input
+                            type="text"
+                            id="textarea"
+                            name="textarea"
+                            onChange={handleChange}
+                            value={textarea}
+                            placeholder="What can we help you with?"
+                            className="border p-2 w-full h-[100px]"
+                            rows="4"
+                            required />
+                            <p style={{ color: "red" }}>{error.textError}</p>
                         <button className="bg-purple-500 text-white px-4 py-2 rounded">Submit</button>
                     </form>
                 </div>

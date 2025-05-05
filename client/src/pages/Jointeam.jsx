@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Modal, Box, Typography } from '@mui/material';
 import { emailRegex } from '../assets/regex';
+import axios from "axios"
+import { Joinusapi } from '../assets/api';
 
 const Jointeam = () => {
     const style = {
@@ -20,6 +22,7 @@ const Jointeam = () => {
     const [lastname, setlastName] = useState("")
     const [email, setEmail] = useState("");
     const [postcode, setPostcode] = useState("")
+     const [modalMessage, setModalMessage] = useState("")
 
     const [openModal, setOpenModal] = useState(false);
 
@@ -87,7 +90,7 @@ const Jointeam = () => {
     };
 
     const validatePostcode = (postcode) => {
-        let isValid=formValid;
+        let isValid = formValid;
         setPostcode(postcode)
 
         setFormValid(isValid);
@@ -110,18 +113,39 @@ const Jointeam = () => {
 
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        if (validateFirstname(firstname) && validateLastname(lastname) && validateEmail(email)&& validatePostcode(postcode)
+        if (validateFirstname(firstname) && validateLastname(lastname) && validateEmail(email) && validatePostcode(postcode)
         ) {
+            const joinusinfo = {
+                firstname: firstname,
+                lastname: lastname,
+                email: email,
+                postcode: postcode,
+            }
+            try {
+                const res = await axios.post(Joinusapi, joinusinfo);
+                if (res.status === 200 || res.status === 201) {
+                    setModalMessage("Signed-up Successfully!");
+                    setOpenModal(true);
+                    setTimeout(() => setOpenModal(false), 2000);
+                    setFirstName("")
+                    setlastName("")
+                    setEmail("")
+                    setPostcode("")
+                }
+            } catch (error) {
+                if (error.response && error.response.status === 409) {
+                    setModalMessage("Email already registered.");
+                } else {
+                    setModalMessage("Already registered. Please try again.");
+                }
 
-            setFirstName("")
-            setlastName("")
-            setEmail("")
-            setPostcode("")
-            setOpenModal(true);
-            setTimeout(() => setOpenModal(false), 2000);
+                setOpenModal(true);
+                setTimeout(() => setOpenModal(false), 2000);
+            }
         }
+
     }
 
     return (
@@ -195,7 +219,7 @@ const Jointeam = () => {
                                 /></div>
                         </div>
 
-                        
+
                         <button className='bg-green-900 text-white py-2 px-4 mt-4 font-bold text-center'>Sign Up</button>
                     </form>
                 </div>
@@ -218,10 +242,22 @@ const Jointeam = () => {
                 <Box sx={style}>
                     <Typography id="modal-modal-title" variant="h6" component="h2">
                         <div className='flex flex-row gap-2 text-sm'>
-                            <p className='pt-1'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" className="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-                            </svg></p>
-                            Signed Up Successfully!</div>
+                            {modalMessage === "Signed-up Successfully!" ? (
+                                <>
+                                    <p className='pt-1'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" className="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                                    </svg></p>
+                                    {modalMessage}
+                                </>
+                            ) : (
+                                <>
+                                    <p className='pt-1'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" className="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.646 4.646a.5.5 0 0 0 0 .708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646a.5.5 0 0 0-.708 0z" />
+                                    </svg></p>
+                                    {modalMessage}
+                                </>
+                            )}
+                        </div>
                     </Typography>
                 </Box>
             </Modal>
