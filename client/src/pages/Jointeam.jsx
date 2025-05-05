@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Modal, Box, Typography } from '@mui/material';
 import { emailRegex } from '../assets/regex';
 import axios from "axios"
-import { Joinusapi } from '../assets/api';
+import { api } from '../assets/api';
 
 const Jointeam = () => {
     const style = {
@@ -124,7 +124,7 @@ const Jointeam = () => {
                 postcode: postcode,
             }
             try {
-                const res = await axios.post(Joinusapi, joinusinfo);
+                const res = await axios.post(api, joinusinfo);
                 if (res.status === 200 || res.status === 201) {
                     setModalMessage("Signed-up Successfully!");
                     setOpenModal(true);
