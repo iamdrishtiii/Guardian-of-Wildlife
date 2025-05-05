@@ -2,7 +2,7 @@ import React, {  useState } from 'react';
 import { Modal, Box, Typography, Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
 import { emailRegex } from '../assets/regex';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { api } from '../assets/api';
+import { Contactapi } from '../assets/api';
 import axios from "axios"
 
 const Contact = () => {
@@ -129,7 +129,7 @@ const Contact = () => {
                 emaill: emaill,
                 textarea: textarea,
             }
-            await axios.post(api,contactinfo)
+            await axios.post(Contactapi,contactinfo)
             .then((res)=>{
                 if(res){
                     console.log("Contact you soon")

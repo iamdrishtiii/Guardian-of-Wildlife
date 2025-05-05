@@ -3,7 +3,7 @@ import { Gauge, gaugeClasses } from '@mui/x-charts/Gauge';
 import { Link } from 'react-router-dom';
 import { Modal, Box, Typography } from '@mui/material';
 import { emailRegex } from '../assets/regex';
-import { api } from '../assets/api';
+import { subscriberapi } from '../assets/api';
 import axios from "axios"
 
 const Footer = () => {
@@ -70,7 +70,7 @@ const Footer = () => {
                 email: email
             }
             try {
-                const res = await axios.post(api, subscriberinfo);
+                const res = await axios.post(subscriberapi, subscriberinfo);
                 if (res.status === 200 || res.status === 201) {
                     setModalMessage("Subscribed Successfully!");
                     setOpenModal(true);
