@@ -1,14 +1,12 @@
 import * as actions from './actiontypes'
-import { Wildlifeapi } from './assets/api'
-import { Blogapi } from './assets/api'
-import { Programapi } from './assets/api'
+import { api } from './assets/api'
 
 export const getWildlife = () => {
     return async (dispatch) => {
-        const url = Wildlifeapi;
+      
 
         try {
-            const response = await fetch(url);
+            const response = await fetch(api);
             const result = await response.json();
             // console.log(result)
             dispatch(
@@ -28,10 +26,9 @@ export const getWildlife = () => {
 
 export const getprograms = () => {
     return async (dispatch) => {
-        const url = Programapi;
-
+     
         try {
-            const response = await fetch(url);
+            const response = await fetch(api);
             const result = await response.json();
             // console.log(result)
             dispatch(
@@ -51,10 +48,9 @@ export const getprograms = () => {
 
 export const getblogs = () => {
     return async (dispatch) => {
-        const url = Blogapi;
-
+   
         try {
-            const response = await fetch(url);
+            const response = await fetch(api);
             const result = await response.json();
             // console.log(result)
             dispatch(
