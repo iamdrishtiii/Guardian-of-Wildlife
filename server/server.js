@@ -7,7 +7,12 @@ dotenv.config();
 
 app.use(express.json());
 app.use(express.urlencoded({extended:false}))
-app.use(cors());
+app.use(cors({
+  origin: 'https://guardian-of-wildlife.onrender.com',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
+
 const wildliferoute = require("./routes/wildliferoute")
 const programsroute = require('./routes/programsroute');
 const blogroute=require('./routes/blogroute');
