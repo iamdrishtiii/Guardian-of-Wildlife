@@ -18,7 +18,7 @@ function Navbar() {
 
   return (
     <nav className="relative bg-green-950 text-white flex justify-between flex-col md:flex-row items-left shadow-lg py-6 px-4">
-      {/* <button className="px-2 py-1 bg-orange-700 text-white rounded-md hidden md:block"><Link to="/donate">Donate</Link></button> */}
+      
       {/* Hamburger Icon for Mobile View */}
       <div className="absolute md:hidden top-5 right-5">
 
@@ -52,7 +52,7 @@ function Navbar() {
 
       {/* Mobile Menu - Display when 'navOpen' is true */}
       <div className={`flex md:hidden flex-col items-center w-full gap-4 font-semibold justify-end py-2 px-4 text-lg ${navOpen ? "" : "hidden"}`}>
-        <button className="px-2 py-1 bg-orange-700 text-white rounded-md"><Link to="/donate">Donate</Link></button>
+        
         {NAVIGATION.map((item) => (
           <NavLink
             to={item.link}
@@ -70,7 +70,7 @@ function Navbar() {
 
       {/* Desktop Menu - Always visible on larger screens */}
       <div className={`md:flex hidden items-center gap-4 lg:gap-8 font-semibold justify-end py-2 px-4 text-lg ${navOpen ? "invisible hidden" : ""}`}>
-        <button className="px-2 py-1 bg-orange-700 text-white rounded-md"><Link to="/donate">Donate</Link></button>
+        
         {NAVIGATION.map((item) => (
           <NavLink
             key={item.link}

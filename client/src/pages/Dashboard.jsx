@@ -12,7 +12,6 @@ const Dashboard = () => {
                     <p className='flex justify-center font-semibold text-center md:text-xl lg:text-2xllg:text-3xl px-20'>Prevent extinction. Protect habitat. Defend nature.</p>
                     <p className='flex justify-center font-semibold text-center gap-4 m-2'>
                         <Link to="/jointeam"><button className='text-black bg-white border-2 p-2 rounded-xl mt-2 '>JOIN US</button></Link>
-                        <Link to="/donate"><button className='text-black bg-white border-2 p-2 rounded-xl mt-2 '>DONATE</button></Link>
                     </p>
                 </div>
 
@@ -22,7 +21,6 @@ const Dashboard = () => {
                     <p className='flex justify-center font-semibold text-center md:text-xl lg:text-2xllg:text-3xl px-20'>Prevent extinction. Protect habitat. Defend nature.</p>
                     <p className='flex justify-center font-semibold text-center gap-4 m-2'>
                         <Link to="/jointeam"><button className='text-black bg-white border-2 p-2 rounded-xl mt-2 '>JOIN US</button></Link>
-                        <Link to="/donate"><button className='text-black bg-white border-2 p-2 rounded-xl mt-2 '>DONATE</button></Link>
                     </p>
                 </div>
 
@@ -32,7 +30,6 @@ const Dashboard = () => {
                     <p className='flex justify-center font-semibold text-center md:text-xl lg:text-2xllg:text-3xl px-20'>Prevent extinction. Protect habitat. Defend nature.</p>
                     <p className='flex justify-center font-semibold text-center gap-4 m-2'>
                         <Link to="/jointeam"><button className='text-black bg-white border-2 p-2 rounded-xl mt-2 '>JOIN US</button></Link>
-                        <Link to="/donate"><button className='text-black bg-white border-2 p-2 rounded-xl mt-2 '>DONATE</button></Link>
                     </p>
                 </div>
             </section>

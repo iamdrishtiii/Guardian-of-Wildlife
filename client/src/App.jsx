@@ -8,7 +8,6 @@ import Contact from './pages/Contact';
 import Program from './pages/Program';
 import Blog from './pages/Blog';
 import Footer from './components/Footer';
-import Donate from './pages/Donate';
 import DetailPage from './pages/DetailPage';
 
 const App = () => {
@@ -29,7 +28,6 @@ const App = () => {
             <Route path="/contact-us" element={<Contact />} />
             <Route path="/programs" element={<Program />} />
             <Route path="/blog" element={<Blog />} />
-            <Route path="/donate" element={<Donate />} />
             <Route path="/wildlife/:id/:AnimalName" element={<DetailPage />} />
             <Route path="/programs/:num/:ProgramName" element={<DetailPage />} />
             <Route path="/blog/:number/:BlogTitle" element={<DetailPage />} />
