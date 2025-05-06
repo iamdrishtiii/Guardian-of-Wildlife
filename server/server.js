@@ -7,7 +7,7 @@ dotenv.config();
 
 app.use(express.json());
 app.use(express.urlencoded({extended:false}))
-const allowedOrigins = ['https://guardian-of-wildlife.onrender.com', 'http://localhost:3000'];
+const allowedOrigins = ['https://guardian-of-wildlife.onrender.com'];
 
 app.use(cors({
   origin: function (origin, callback) {
