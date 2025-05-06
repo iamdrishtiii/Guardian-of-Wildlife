@@ -12,7 +12,7 @@ const Wildlife = () => {
 
     const animalss = useSelector((state) => state.animalss) || [];
     const dispatch = useDispatch();
-
+      
     useEffect(() => {
         dispatch(getWildlife());
     }, [dispatch]);
