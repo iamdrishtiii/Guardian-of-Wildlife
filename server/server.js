@@ -15,6 +15,7 @@ dotenv.config();
 app.use(express.json());
 app.use(express.urlencoded({extended:false}))
 app.use(cors({ origin: 'https://guardian-of-wildlife.onrender.com' }));
+app.use(cors({origin:'https://guardian-of-wildlife.onrender.com/wildlife'}))
 app.use(wildliferoute);
 app.use(programsroute);
 app.use(blogroute);
