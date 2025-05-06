@@ -7,18 +7,8 @@ dotenv.config();
 
 app.use(express.json());
 app.use(express.urlencoded({extended:false}))
-const allowedOrigins = ['https://guardian-of-wildlife.onrender.com'];
 
-app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true
-}));
+app.use(cors());
 
 const wildliferoute = require("./routes/wildliferoute")
 const programsroute = require('./routes/programsroute');
