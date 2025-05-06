@@ -208,7 +208,7 @@ const Jointeam = () => {
                                 <p style={{ color: "red" }}>{error.emailError}</p></div>
 
 
-                            <div><label className="text-md md:text-xl" htmlFor="postcode">Postcode</label> <br />
+                            <div><label className="text-md md:text-xl" htmlFor="postcode">Postcode<span style={{ color: "red" }}>*</span></label> <br />
                                 <input className="border-gray-300 border-2 rounded-lg p-2 lg:m-2"
                                     type="number"
                                     id="postcode"
