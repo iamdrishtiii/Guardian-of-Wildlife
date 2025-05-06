@@ -1,20 +1,21 @@
 const express = require('express')
 const app = express();
 const dbConnection = require("./config/config")
-const wildliferoute = require("./routes/wildliferoute")
 const dotenv=require("dotenv");
-const programsroute = require('./routes/programsroute');
-const blogroute=require('./routes/blogroute');
 const cors = require('cors');
-const contactroute = require('./routes/contactroute');
-const subsroute = require('./routes/footerroute');
-const joinusroute = require('./routes/joinusroute');
-
 dotenv.config();
 
 app.use(express.json());
 app.use(express.urlencoded({extended:false}))
-app.use(cors({ origin: 'https://guardian-of-wildlife.onrender.com' }));
+app.use(cors());
+const wildliferoute = require("./routes/wildliferoute")
+const programsroute = require('./routes/programsroute');
+const blogroute=require('./routes/blogroute');
+const contactroute = require('./routes/contactroute');
+const subsroute = require('./routes/footerroute');
+const joinusroute = require('./routes/joinusroute');
+
+
 app.use(wildliferoute);
 app.use(programsroute);
 app.use(blogroute);
