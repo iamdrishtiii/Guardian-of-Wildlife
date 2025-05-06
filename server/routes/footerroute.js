@@ -6,9 +6,9 @@ subsroute.post(["/","/wildlife","/contact","/blog","/jointeam","/program","/dash
     try{
         const {email} = req.body;
         // Check if email already exists
-        const existingUser = await Jointeam.findOne({ email: email });
+        const existingUser = await subscriber.findOne({ email: email });
         if (existingUser) {
-            return res.status(409).json({ message: "Email already registered" });
+            return res.status(409).json({ message: "Email already subscribed" });
         }
 
          // Create new entry
