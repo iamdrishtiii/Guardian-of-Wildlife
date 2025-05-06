@@ -138,7 +138,7 @@ const Jointeam = () => {
                 if (error.response && error.response.status === 409) {
                     setModalMessage("Email already registered.");
                 } else {
-                    setModalMessage("Already registered. Please try again.");
+                    setModalMessage("Something went wrong. Please try again.");
                 }
 
                 setOpenModal(true);

@@ -81,7 +81,7 @@ const Footer = () => {
                 if (error.response && error.response.status === 409) {
                     setModalMessage("Email already subscribed.");
                 } else {
-                    setModalMessage("Already registered. Please try again.");
+                    setModalMessage("Something Went wrong. Please try again.");
                 }
                 setOpenModal(true);
                 setTimeout(() => setOpenModal(false), 3000);
