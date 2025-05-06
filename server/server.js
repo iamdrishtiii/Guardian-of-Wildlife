@@ -14,12 +14,14 @@ dotenv.config();
 
 app.use(express.json());
 app.use(express.urlencoded({extended:false}))
-app.use(cors());
-app.use(wildliferoute);
-app.use(programsroute);
-app.use(blogroute);
-app.use(contactroute)
-app.use(joinusroute);
+app.use(cors({
+  origin:"https://guardian-of-wildlife.onrender.com"
+}));
+app.use("/wildlife",wildliferoute);
+app.use("/programs",programsroute);
+app.use("/blog",blogroute);
+app.use("/contact",contactroute)
+app.use("/jointeam",joinusroute);
 app.use(subsroute);
 
 // connect to db
