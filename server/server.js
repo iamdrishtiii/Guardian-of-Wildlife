@@ -38,7 +38,7 @@ app.use(subsroute);
 // connect to db
 dbConnection(); 
 
-const PORT = process.env.PORT || 4000
+const PORT = process.env.PORT || 3001
 
 app.listen(PORT  , () => {
   console.log(`Server listening on port ${PORT}`)
