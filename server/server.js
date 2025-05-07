@@ -16,7 +16,7 @@ const blogroute=require('./routes/blogroute');
 const contactroute = require('./routes/contactroute');
 const subsroute = require('./routes/footerroute');
 const joinusroute = require('./routes/joinusroute');
-app.use(express.static(path.join(__dirname, 'client/build')));
+
 
 app.use(wildliferoute);
 app.use(programsroute);
@@ -24,10 +24,6 @@ app.use(blogroute);
 app.use(contactroute)
 app.use(joinusroute);
 app.use(subsroute);
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-});
-
 
 // connect to db
 dbConnection(); 
