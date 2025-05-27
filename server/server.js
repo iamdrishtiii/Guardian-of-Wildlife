@@ -24,7 +24,7 @@ app.use(wildliferoute);
 app.use(programsroute);
 app.use(blogroute);
 app.use(contactroute)
-app.use(joinusroute);
+app.use(joinusroute);  
 app.use(subsroute);
 
 // connect to db
