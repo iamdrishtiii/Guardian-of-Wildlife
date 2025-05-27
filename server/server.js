@@ -24,7 +24,7 @@ app.use(wildliferoute);
 app.use(programsroute);
 app.use(blogroute);
 app.use(contactroute)
-app.use(joinusroute);  
+app.use(joinusroute);
 app.use(subsroute);
 
 // connect to db
@@ -39,6 +39,5 @@ app.get('*', (req, res) => {
 });
 
 app.listen(PORT  , () => {
-  console.log("Server listening on port ${PORT}")
+  console.log(`Server listening on port ${PORT}`)
 })
-
