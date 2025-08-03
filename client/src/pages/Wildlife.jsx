@@ -6,16 +6,23 @@ import { Link } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa";
 
 const Wildlife = () => {
+    const [loading, setLoading] = useState(true);
     const [filter, setFilter] = useState("Endangered");
     const [currentPage, setCurrentPage] = useState(1);
     const animalsPerPage = 6;
 
     const animalss = useSelector((state) => state.animalss) || [];
     const dispatch = useDispatch();
-      
+
     useEffect(() => {
         dispatch(getWildlife());
     }, [dispatch]);
+
+    useEffect(() => {
+        if (animalss || [].length > 0) {
+            setLoading(false)
+        }
+    }, [animalss])
 
     // Filter the animals based on conservation status
     const filteredAnimals = animalss.filter(animal => animal.ConservationStatus === filter);
@@ -46,50 +53,57 @@ const Wildlife = () => {
                     <option value="Critically Endangered">Critically Endangered</option>
                 </select>
             </div>
+            {loading ? (
+                <div className="flex justify-center items-center h-96">
+                    <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-green-700"></div>
+                </div>
+            ) : (
 
-            {/* Animal Grid */}
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-2 lg:p-10">
-                {currentAnimals.length > 0 ? (
-                    currentAnimals.map((animal) => (
-                        <div key={animal.id} className="rounded-xl hover:bg-gray-100 px-10 py-4 h-fit flex justify-center text-center">
-                            <Link to={`/wildlife/${animal.id}/${animal.AnimalName}`}>
-                                <img src={animal.image} alt="" height="350px" width="350px" className="rounded-xl" />
-                                <p className="text-2xl font-bold flex flex-row gap-10 mt-4">
-                                    {animal.AnimalName}   <FaArrowRight />
-                                </p>
-                            </Link>
-                        </div>
-                    ))
-                ) : (
-                    <p className="text-center col-span-3 text-red-500">No animals found for {filter} status.</p>
-                )}
-            </div>
-
-            {/* Pagination Controls */}
-            {totalPages > 1 && (
-                <div className="flex justify-center space-x-2 mt-6">
-                    <button
-                        onClick={() => setCurrentPage(currentPage - 1)}
-                        disabled={currentPage === 1}
-                        className={`px-3 py-2 border rounded ${currentPage === 1 ? "bg-gray-300 cursor-not-allowed" : "bg-white"}`}
-                    >
-                        <MdKeyboardArrowRight className="rotate-180" />
-                    </button>
-
-                    <button className="px-3 py-2 border rounded bg-white">{currentPage}</button>
-
-                    <button
-                        onClick={() => setCurrentPage(currentPage + 1)}
-                        disabled={currentPage === totalPages}
-                        className={`px-3 py-2 border rounded ${currentPage === totalPages ? "bg-gray-300 cursor-not-allowed" : "bg-white"}`}
-                    >
-                        <MdKeyboardArrowRight />
-                    </button>
+                < div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-2 lg:p-10">
+                    {/* Animal Grid */}
+                    {currentAnimals.length > 0 ? (
+                        currentAnimals.map((animal) => (
+                            <div key={animal.id} className="rounded-xl hover:bg-gray-100 px-10 py-4 h-fit flex justify-center text-center">
+                                <Link to={`/wildlife/${animal.id}/${animal.AnimalName}`}>
+                                    <img src={animal.image} alt="" height="350px" width="350px" className="rounded-xl" />
+                                    <p className="text-2xl font-bold flex flex-row gap-10 mt-4">
+                                        {animal.AnimalName}   <FaArrowRight />
+                                    </p>
+                                </Link>
+                            </div>
+                        ))
+                    ) : (
+                        <p className="text-center col-span-3 text-red-500">No animals found for {filter} status.</p>
+                    )}
                 </div>
             )}
-        </div>
+
+            {/* Pagination Controls */}
+            {
+                totalPages > 1 && (
+                    <div className="flex justify-center space-x-2 mt-6">
+                        <button
+                            onClick={() => setCurrentPage(currentPage - 1)}
+                            disabled={currentPage === 1}
+                            className={`px-3 py-2 border rounded ${currentPage === 1 ? "bg-gray-300 cursor-not-allowed" : "bg-white"}`}
+                        >
+                            <MdKeyboardArrowRight className="rotate-180" />
+                        </button>
+
+                        <button className="px-3 py-2 border rounded bg-white">{currentPage}</button>
+
+                        <button
+                            onClick={() => setCurrentPage(currentPage + 1)}
+                            disabled={currentPage === totalPages}
+                            className={`px-3 py-2 border rounded ${currentPage === totalPages ? "bg-gray-300 cursor-not-allowed" : "bg-white"}`}
+                        >
+                            <MdKeyboardArrowRight />
+                        </button>
+                    </div>
+                )
+            }
+        </div >
     );
 };
-
 export default Wildlife;
 
