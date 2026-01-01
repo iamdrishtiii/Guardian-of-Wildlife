@@ -19,7 +19,7 @@ const Wildlife = () => {
     }, [dispatch]);
 
     useEffect(() => {
-        if (animalss || [].length > 0) {
+        if ((animalss || []).length > 0) {
             setLoading(false)
         }
     }, [animalss])
